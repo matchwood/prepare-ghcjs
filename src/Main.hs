@@ -21,11 +21,11 @@ ltsCfg = PrepConfig
  , workdir        = "work-lts"
  , checkResolver  = lts
  , tag            = "lts"
- , copyIgnore     = ["ghc", "ghc-boot", "ghc-boot-th", "ghci", "integer-gmp", "Win32"]
- , copyOverride   = ["cabal"]
+ , copyIgnore     = ["cabal", "ghc", "ghc-boot", "ghc-boot-th", "ghci", "integer-gmp", "Win32"]
+ , copyOverride   = []
  , forceVersion   = [("integer-gmp", "1.0.0.1")]
  , forceFresh     = [("mtl", "2.2.1"), ("transformers-compat","0.5.1.4")]
- , ghc            = "8.0.1"
+ , ghc            = "8.0.2"
  , extraBoot      = []
  , extraBuild     = []
  , nameSuffix     = ""
@@ -109,7 +109,7 @@ sync PrepConfig{..} = do
           forM (need ++ forceFresh) getPackage
       shell' "pwd"
       --- here
-
+      shell' $ "cp -f ../spec-"<> tag <> "/stack.yaml" <> " " <> ghcjsVanila <> "/stack.yaml"
       mapM_ (\(f,p) -> shell' $ "cp -f ../spec-"<> tag <> "/" <> f <> " " <> p) overwriteFiles
       mapM_ (\f -> shell' $ "rm -rf ghcjs-boot/boot/"<>f) copyOverride
       mapM_ (\f -> shell' $ "cp -rf ../spec-"<> tag <> "/" <> f <> " " <> "ghcjs-boot/boot/"<>f) copyOverride

@@ -59,6 +59,7 @@ packages:
     - ./boot/deepseq
     - ./boot/directory
     - ./boot/filepath
+    - ./boot/ghc
     - ./boot/ghc-boot
     - ./boot/ghc-boot-th
     - ./boot/ghci
@@ -95,7 +96,6 @@ packages:
     - ./boot/scientific
     - ./boot/stm
     - ./boot/syb
-    - ./boot/transformers-compat
     - ./boot/tagged
     - ./boot/text
     - ./boot/unordered-containers
@@ -185,6 +185,7 @@ programs:
   ghc:        ghc
   ghc-pkg:    ghc-pkg
   node:       node
+  npm:        npm
   bash:       bash
   make:       make
   cpp:        cpp
@@ -195,4 +196,3 @@ programs:
 
   # ghcjs-boot has a built-in unpacker for uncompressed tar, this is only used for tar.gz, tar.bz2, tar.xz
   tar:        tar
-
