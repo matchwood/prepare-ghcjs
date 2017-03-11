@@ -102,7 +102,8 @@ sync PrepConfig{..} = do
 
       putStrLn $ "have " ++ show (DL.sort (p DL.\\ canCopy))
 
-      let need = DL.sort (bootDeps DL.\\ (("boot-ng","0.1.0.0"):canCopy++forceVersion))
+      -- for testing purposes exclude base
+      let need = filter (\(n, _) -> n /= "base") $ DL.sort (bootDeps DL.\\ (("boot-ng","0.1.0.0"):canCopy++forceVersion))
       putStrLn $ "need " ++ show need
       keepPath $ do
           cd "ghcjs-boot/boot"
